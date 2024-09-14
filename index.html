@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人タスク管理ツール_var1.0</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css" rel="stylesheet">
+</head>
+<body>
+    <!--タイトル表示-->
+    <div class="slideshow-container">
+        <div class="slides">
+            <header id="headerTitle" class="slide">個人タスク管理ツール<span id="headerVersion">Ver_1.0</span></header>
+        </div>
+    </div>
+    <h1 id="kikakuTitle">企画・日程</h1>
+    <form id="titleForm">
+         <input type="text" id="titleInput" placeholder="ゲームのタイトルを入力してください">
+    </form>
+    <!-- 日付入力 -->
+    <form id="dateForm">
+        <label for="dateInput1">プロトタイプ</label>
+        <input type="date" id="dateInput1" name="dateInput1"><br>
+      
+        <label for="dateInput2">α版</label>
+        <input type="date" id="dateInput2" name="dateInput2"><br>
+      
+        <label for="dateInput3">β版</label>
+        <input type="date" id="dateInput3" name="dateInput3"><br>
+      
+        <label for="dateInput4">マスター版</label>
+        <input type="date" id="dateInput4" name="dateInput4"><br>
+      
+        <label for="dateInput5">リリース</label>
+        <input type="date" id="dateInput5" name="dateInput5"><br>
+      
+        <button type="button" onclick="showDates()">保存</button>
+        <button type="button" id="resetButton" onclick="resetDates()">リセット</button>
+      </form>
+      <div id="displayDates"></div>
+    <!-- タスク入力フォーム -->
+    <h2 id="taskTitle">タスク</h2>
+    <form id="taskForm">
+        <input type="text" id="taskInput" placeholder="タスクを入力してください">
+        <button type="button" id="addButton" onclick="addTask()">追加</button>
+      </form>
+      <ul id="taskList">
+        <!-- ここにタスクが追加されます -->
+    <div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
