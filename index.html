@@ -39,16 +39,28 @@
         <button type="button" id="resetButton" onclick="resetDates()">リセット</button>
       </form>
       <div id="displayDates"></div>
-    <!-- タスク入力フォーム -->
-    <h2 id="taskTitle">タスク</h2>
-    <form id="taskForm">
-        <input type="text" id="taskInput" placeholder="タスクを入力してください">
-        <button type="button" id="addButton" onclick="addTask()">追加</button>
+      <!-- タスク入力フォーム -->
+      <h2 id="taskTitle" class="listTitle">タスク</h2>
+      <form id="taskForm" class="listForm">
+          <input type="text" id="taskInput" class="listInput" placeholder="タスクを入力してください">
+          <button type="button" id="add-task-button" onclick="addTask()">追加</button>
       </form>
-      <ul id="taskList">
-        <!-- ここにタスクが追加されます -->
-    <div>
-    </div>
+      <ul id="taskList" class="list">
+          <!-- ここにタスクが追加されます -->
+          <div>
+          </div>
+      </ul>
+      <!-- バグ入力フォーム -->
+      <h2 id="bugTitle" class="listTitle">バグ</h2>
+      <form id="bugForm" class="listForm">
+          <input type="text" id="bugInput" class="listInput" placeholder="現在のバグを入力してください">
+          <button type="button" id="add-bug-button" onclick="addBug()">追加</button>
+      </form>
+      <ul id="bugList" class="list">
+          <!-- ここにバグリストが追加されます -->
+          <div>
+          </div>
+      </ul>
     <script src="main.js"></script>
 </body>
 </html>

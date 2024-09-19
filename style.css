@@ -52,7 +52,7 @@
   }
   
   /* 入力フォーム */
-  .dateForm, #taskForm , #titleForm {
+  .dateForm, .listForm, #titleForm {
     text-align: center; /* タスクの表示を中央に配置する */
     width: 80%; /* 入力欄の幅を広くする */
     margin: 0 auto; /* 全体を中央に配置する */
@@ -82,7 +82,7 @@
   }
   
   /* 入力欄とボタン */
-  input[type="date"], #taskInput, #titleInput {
+  input[type="date"], input[type="text"], #titleInput {
     text-align: center; /* タスクの表示を中央に配置する */
     padding: 10px; /* 入力欄の余白を追加 */
     font-size: 20px; /* フォントサイズを変更 */
@@ -92,7 +92,7 @@
     flex: 1; /* 入力欄が残りのスペースを占めるようにする */
   }
   
-  button, #resetButton, #addButton {
+  button, #resetButton, #add-task-button, #add-task-button {
     padding: 10px; /* ボタンの余白を追加 */
     font-size: 20px; /* フォントサイズを変更 */
     background-color: black;
@@ -127,7 +127,7 @@
     }
   }
   
-  #taskList {
+  .list {
     text-align: center; /* タスクの表示を中央に配置する */
     color: black; /* テキストの色を白に設定 */
     font-size: 20px; /* フォントサイズを20pxに設定 */
@@ -136,7 +136,7 @@
     font-weight: bold; /* フォントを太くする */
   }
 
-  #taskTitle ,#kikakuTitle {
+  .listTitle ,#kikakuTitle {
     font-size: 50px;
     text-align:center;
   }

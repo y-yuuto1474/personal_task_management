@@ -9,6 +9,7 @@ window.onload = function() {
       }
     }
     displayTasks();
+    displayBugs();
 
     // ローカルストレージから値を取得
     var savedTitle = localStorage.getItem('gameTitle');
@@ -105,6 +106,57 @@ window.onload = function() {
     taskList[index].crossedOut = !taskList[index].crossedOut; // タスクの状態を切り替える
     localStorage.setItem("tasks", JSON.stringify(taskList)); // ローカルストレージに保存
     displayTasks(); // タスクを再表示する
+  }
+
+
+  //バグ入力処理
+  
+  function addBug() {
+    let bugInput = document.getElementById("bugInput").value;
+    if (bugInput.trim() !== "") { // 入力が空でないことを確認
+      var bugList = JSON.parse(localStorage.getItem("bugs")) || []; // ローカルストレージからバグを取得
+      bugList.push({bug: bugInput, crossedOut: false}); // バグを追加
+      localStorage.setItem("bugs", JSON.stringify(bugList)); // ローカルストレージに保存
+      displayBugs(); // タスクを表示する
+      document.getElementById("bugInput").value = ""; // 入力欄をクリアする
+    }
+  }
+  
+  function displayBugs() {
+    let bugList = JSON.parse(localStorage.getItem("bugs")) || []; // ローカルストレージからバグを取得
+    let bugListElement = document.getElementById("bugList");
+    bugListElement.innerHTML = ""; // バグリストをクリアする
+    bugList.forEach(function(bug, index) {
+      let li = document.createElement("li");
+      li.textContent = bug.bug;
+      li.addEventListener("click", function() {
+        // 左クリックでタスクを削除
+        removeBug(index);
+      });
+      li.addEventListener("contextmenu", function(event) {
+        event.preventDefault(); // 右クリックのデフォルト動作を無効化
+        // 右クリックでタスクに横線を表示
+        toggleBugCrossedOut(index);
+      });
+      if (bug.crossedOut) {
+        li.style.textDecoration = "line-through";
+      }
+      bugListElement.appendChild(li);
+    });
+  }
+  
+  function removeBug(index) {
+    let bugList = JSON.parse(localStorage.getItem("bugs")) || []; // ローカルストレージからバグを取得
+    bugList.splice(index, 1); // タスクを削除
+    localStorage.setItem("bugs", JSON.stringify(bugList)); // ローカルストレージに保存
+    displayBugs(); // タスクを再表示する
+  }
+  
+  function toggleBugCrossedOut(index) {
+    let bugList = JSON.parse(localStorage.getItem("bugs")) || []; // ローカルストレージからバグを取得
+    bugList[index].crossedOut = !bugList[index].crossedOut; // バグの状態を切り替える
+    localStorage.setItem("bugs", JSON.stringify(bugList)); // ローカルストレージに保存
+    displayBugs(); // タスクを再表示する
   }
 
   // キーボードイベントを監視する関数
