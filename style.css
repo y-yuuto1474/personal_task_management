@@ -1,142 +1,166 @@
 /* スライド表示 */
-#headerTitle {
-    background-color:black;
+#header-title {
+    background-color: black;
     color: white;
     font-size: 70px;
     text-align: center;
-  }
-  
-  #headerVersion {
+    padding: 20px; /* パディングを追加して余白を設定 */
+    margin-bottom: 20px; /* 余白を設定 */
+}
+
+#header-version {
     color: darkgrey;
     font-size: 30px;
-  }
-  
-  .slides {
+}
+
+.slides {
     position: relative;
-    height: 100px; /* スライド表示領域の高さを設定 */
-    overflow: hidden; /* オーバーフローを隠す */
-  }
-  
-  .slide {
+    height: 100px;
+    overflow: hidden;
+}
+
+.slide {
     position: absolute;
     top: 0;
-    left: 20%; /* スライド表示領域の中央に配置 */
-    white-space: nowrap; /* テキストが折り返されないようにする */
-    animation: slideText 5s forwards; /* アニメーションを適用 */
-  }
-  
-  @keyframes slideText {
+    left: 50%; /* Bootstrapと連携して中央揃え */
+    transform: translateX(-50%); /* 中央に配置 */
+    white-space: nowrap;
+    animation: slideText 5s forwards;
+}
+
+@keyframes slideText {
     0% {
-      opacity: 0; /* 要素を非表示に */
-      transform: translateX(-300%); /* スライド開始位置を設定 */
+        opacity: 0;
+        transform: translateX(-300%);
     }
     25% {
-      opacity: 1; /* 要素を表示に */
-      transform: translateX(0%); /* スライド終了位置を設定 */
+        opacity: 1;
+        transform: translateX(0%);
     }
     75% {
-      transform: translateX(0%); /* スライド終了位置を保持 */
+        transform: translateX(0%);
     }
     100% {
-      transform: translateX(0%); /* スライド終了位置を設定 */
+        transform: translateX(0%);
     }
-  }
-  
-  /* 全体のスタイル */
-  body {
+}
+
+/* 全体のスタイル */
+body {
     font-family: Arial, sans-serif;
-    background-image: url('img/white_00039.jpg'); /* 画像のURLを指定 */
-    background-size: cover; /* 画像をウィンドウ全体に表示 */
-    background-repeat: no-repeat; /* 画像を繰り返し表示しない */
+    background-image: url('img/white_00039.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     padding: 20px;
-  }
-  
-  /* 入力フォーム */
-  .dateForm, .listForm, #titleForm {
-    text-align: center; /* タスクの表示を中央に配置する */
-    width: 80%; /* 入力欄の幅を広くする */
-    margin: 0 auto; /* 全体を中央に配置する */
-    opacity: 0; /* 初期状態では非表示にする */
-    animation: fadeIn 5s ease forwards; /* じわじわ表示させるアニメーションを追加 */
-    display: flex; /* Flexbox を使用する */
-    justify-content: center; /* 要素を中央に配置する */
-    align-items: center; /* 要素を中央に配置する */
-    padding: 50px; /* 入力欄の余白を追加 */
-  }
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeIn 5s ease forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
 
-  #dateForm {
-    width: 80%; /* 入力フォームの幅を広くする */
-    margin: 0 auto; /* 入力フォームを中央に配置する */
-    text-align: center; /* 入力欄のテキストを中央に配置する */
-    padding: 60px; /* 入力欄の余白を追加 */
-    font-size: 35px; /* フォントサイズを変更 */
-    animation: fadeIn 5s ease forwards; /* じわじわ表示させるアニメーションを追加 */
-  }
+#date-form, #title-form {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 60px;
+    font-size: 35px;
+    animation: fadeIn 5s ease forwards;
+}
 
-  #dateForm label {
-    display: block; /* ラベルをブロック要素として配置し、改行する */
-  }
-  
-  .dateInputFields {
-    display: none; /* 入力フィールドを非表示にする */
-  }
-  
-  /* 入力欄とボタン */
-  input[type="date"], input[type="text"], #titleInput {
-    text-align: center; /* タスクの表示を中央に配置する */
-    padding: 10px; /* 入力欄の余白を追加 */
-    font-size: 20px; /* フォントサイズを変更 */
+#date-form label, #title-form label {
+    display: block;
+    margin-bottom: 10px; /* ラベルの下に余白を追加 */
+}
+
+.date-input-fields {
+    display: none;
+}
+
+/* 入力欄とボタン */
+input[type="date"], input[type="text"]{
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    letter-spacing: 10px; /* 文字間の間隔を1ピクセルに設定 */
-    flex: 1; /* 入力欄が残りのスペースを占めるようにする */
-  }
-  
-  button, #resetButton, #add-task-button, #add-task-button {
-    padding: 10px; /* ボタンの余白を追加 */
-    font-size: 20px; /* フォントサイズを変更 */
+    letter-spacing: 1px; /* 文字間隔を通常に */
+    flex: 1;
+    max-width: 100%; /* 入力フィールドを親の幅に合わせる */
+    margin-bottom: 15px; /* フィールド間の余白を追加 */
+}
+
+button, #reset-button, #add-task-button, #add-bug-button {
+    padding: 10px;
+    font-size: 20px;
     background-color: black;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 10px; /* ボタンと入力欄の間のスペース */
-  }
-  
-  button:hover, #resetButton:hover, #addButton:hover {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+button:hover, #reset-button:hover, #add-task-button:hover, #add-bug-button:hover {
     background-color: #45a049;
-  }
-  
-  #resetButton {
+}
+
+#reset-button {
     background-color: rebeccapurple;
-    margin-right: 10px; /* リセットボタンと表示ボタンの間のスペース */
-  }
-  
-  #displayDate {
-    margin: 0 auto; /* 全体を中央に配置する */
+    margin-right: 10px;
+}
+
+#display-dates {
+    margin: 0 auto;
     font-size: 30px;
     margin-top: 10px;
-  }
-  
-  @keyframes fadeIn {
+}
+
+@keyframes fadeIn {
     from {
-      opacity: 0; /* 非表示から始める */
+        opacity: 0;
     }
     to {
-      opacity: 1; /* 完全に表示する */
+        opacity: 1;
     }
-  }
-  
-  .list {
-    text-align: center; /* タスクの表示を中央に配置する */
-    color: black; /* テキストの色を白に設定 */
-    font-size: 20px; /* フォントサイズを20pxに設定 */
-    border: 1px solid black; /* 枠を白に設定 */
-    list-style-type: none; /* マーカー（点）を削除 */
-    font-weight: bold; /* フォントを太くする */
-  }
+}
 
-  .listTitle ,#kikakuTitle {
+/* リスト */
+.list {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    border: 1px solid black;
+    list-style-type: none;
+    font-weight: bold;
+    padding: 10px; /* リスト項目に余白を追加 */
+}
+
+.list-title, #kikaku-title {
     font-size: 50px;
-    text-align:center;
-  }
+    text-align: center;
+}
+
+/* ページ全体の高さを100%に */
+html, body {
+    height: 100%;
+}
+
+/* コンテンツ全体を中央に配置するためのカスタムスタイル */
+.full-height {
+    height: 100vh;
+}
+
+/* カレンダーやリストアイテムの中央揃え */
+.container, .row {
+    text-align: center;
+}
+
+.list-div {
+    margin: 15px
+}

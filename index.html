@@ -1,61 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人タスク管理ツール_var1.1</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- BootstrapのCSSをCDNから読み込む -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FullCalendarのCSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.9.0/main.min.css" rel="stylesheet">
+
+    <!-- カスタムCSSファイルを読み込む -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jQueryをCDNから読み込む -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
-    <!--タイトル表示-->
-    <div class="slideshow-container">
-        <div class="slides">
-            <header id="headerTitle" class="slide">個人タスク管理ツール<span id="headerVersion">Ver_1.0</span></header>
+<body class="d-flex justify-content-center align-items-start">
+
+    <div class="container my-4">
+        <!-- タイトル表示 -->
+        <div class="row">
+            <div class="col text-center">
+                <header id="header-title" class="h1">個人タスク管理ツール <span id="header-version" class="h6">Ver_1.1</span></header>
+            </div>
+        </div>
+
+        <!-- 企画・日程 -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <h1 id="kikaku-title" class="h2 text-center">企画・日程</h1>
+                <form id="title-form" class="form-group">
+                    <input type="text" id="title-input" class="form-control mb-3" placeholder="ゲームのタイトルを入力してください">
+                </form>
+            </div>
+        </div>
+
+        <!-- 日付入力フォーム -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <form id="date-form">
+                    <div class="form-group">
+                        <label for="date-input-1">プロトタイプ</label>
+                        <input type="date" id="date-input-1" name="date-input-1" class="form-control mb-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-input-2">α版</label>
+                        <input type="date" id="date-input-2" name="date-input-2" class="form-control mb-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-input-3">β版</label>
+                        <input type="date" id="date-input-3" name="date-input-3" class="form-control mb-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-input-4">マスター版</label>
+                        <input type="date" id="date-input-4" name="date-input-4" class="form-control mb-2">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-input-5">リリース</label>
+                        <input type="date" id="date-input-5" name="date-input-5" class="form-control mb-2">
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="button" class="btn btn-primary mr-2" onclick="showDates()">保存</button>
+                        <button type="button" class="btn btn-secondary" id="reset-button" onclick="resetDates()">リセット</button>
+                    </div>
+                </form>
+                <div id="display-dates" class="mt-3"></div>
+            </div>
+        </div>
+
+        <!-- タスク入力フォーム -->
+        <div class="row justify-content-center list-div">
+            <div class="col-12 col-md-8">
+                <h2 id="task-title" class="h4 text-center">タスク</h2>
+                <form id="task-form" class="form-inline mb-3 justify-content-center">
+                    <input type="text" id="task-input" class="form-control mr-2" placeholder="タスクを入力してください">
+                    <button type="button" class="btn btn-success" id="add-task-button" onclick="addTask()">追加</button>
+                </form>
+                <ul id="task-list" class="list-group list">
+                    <!-- ここにタスクが追加されます -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- バグ入力フォーム -->
+        <div class="row justify-content-center list-div">
+            <div class="col-12 col-md-8">
+                <h2 id="bug-title" class="h4 text-center">バグ</h2>
+                <form id="bug-form" class="form-inline mb-3 justify-content-center">
+                    <input type="text" id="bug-input" class="form-control mr-2" placeholder="現在のバグを入力してください">
+                    <button type="button" class="btn btn-danger" id="add-bug-button" onclick="addBug()">追加</button>
+                </form>
+                <ul id="bug-list" class="list-group list">
+                    <!-- ここにバグリストが追加されます -->
+                </ul>
+            </div>
         </div>
     </div>
-    <h1 id="kikakuTitle">企画・日程</h1>
-    <form id="titleForm">
-         <input type="text" id="titleInput" placeholder="ゲームのタイトルを入力してください">
-    </form>
-    <!-- 日付入力 -->
-    <form id="dateForm">
-        <label for="dateInput1">プロトタイプ</label>
-        <input type="date" id="dateInput1" name="dateInput1"><br>
-        <label for="dateInput2">α版</label>
-        <input type="date" id="dateInput2" name="dateInput2"><br>
-        <label for="dateInput3">β版</label>
-        <input type="date" id="dateInput3" name="dateInput3"><br>
-        <label for="dateInput4">マスター版</label>
-        <input type="date" id="dateInput4" name="dateInput4"><br>
-        <label for="dateInput5">リリース</label>
-        <input type="date" id="dateInput5" name="dateInput5"><br>
-        <button type="button" onclick="showDates()">保存</button>
-        <button type="button" id="resetButton" onclick="resetDates()">リセット</button>
-      </form>
-      <div id="displayDates"></div>
-      <!-- タスク入力フォーム -->
-      <h2 id="taskTitle" class="listTitle">タスク</h2>
-      <form id="taskForm" class="listForm">
-          <input type="text" id="taskInput" class="listInput" placeholder="タスクを入力してください">
-          <button type="button" id="add-task-button" onclick="addTask()">追加</button>
-      </form>
-      <ul id="taskList" class="list">
-          <!-- ここにタスクが追加されます -->
-          <div>
-          </div>
-      </ul>
-      <!-- バグ入力フォーム -->
-      <h2 id="bugTitle" class="listTitle">バグ</h2>
-      <form id="bugForm" class="listForm">
-          <input type="text" id="bugInput" class="listInput" placeholder="現在のバグを入力してください">
-          <button type="button" id="add-bug-button" onclick="addBug()">追加</button>
-      </form>
-      <ul id="bugList" class="list">
-          <!-- ここにバグリストが追加されます -->
-          <div>
-          </div>
-      </ul>
+
+    <!-- BootstrapのJSとその依存ライブラリをCDNから読み込む -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- カスタムJSファイルを読み込む -->
     <script src="main.js"></script>
 </body>
 </html>
